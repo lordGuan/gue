@@ -3,12 +3,21 @@ import Gue from "./gue";
 const firstGue = new Gue({
   data() {
     return {
-      someString: "Gue Test"
+      someString: "Gue Test",
+      happy: "happy"
     }
   },
   computed: {
     fixed() {
-      return this.someString + "test";
+      return this.someString + this.happy;
+    }
+  },
+  watch: {
+    fixed(newValue, oldValue) {
+      console.log("Watch!fixed", newValue, oldValue, this.someString);
+    },
+    someString(newValue, oldValue) {
+      console.log("Watch!someString", newValue, oldValue);
     }
   }
 }).$mount("#app");
